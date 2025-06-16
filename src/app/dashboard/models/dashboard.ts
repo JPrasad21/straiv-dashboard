@@ -1,4 +1,4 @@
-import { Widget } from "./widget";
+import { Widget } from "../../widgets/models/widget";
 
 export interface Dashboard {
 	id: string;

@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Widget } from '../../../models/widget';
+import { Widget } from '../../../widgets/models/widget';
 import { KtdGridLayout, KtdGridLayoutItem, KtdGridModule } from '@katoid/angular-grid-layout';
 import { CommonModule } from '@angular/common';
 
