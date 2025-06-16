@@ -61,6 +61,19 @@ export class DashboardComponent {
     });
   }
   addWidget() {
-    this.dialog.open(CreateWidgetComponent);
+    const dialogRef = this.dialog.open(CreateWidgetComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        const dashboard = this.selectedDashboard();
+        if (dashboard) {
+          const updatedDashboard: Dashboard = {
+            ...dashboard,
+            widgets: [...dashboard.widgets, result]
+          };
+          this.selectedDashboard.set(updatedDashboard);
+          this.storageService.setItem('selectedDashboard', updatedDashboard);
+        }
+      }
+    });
   }
 }

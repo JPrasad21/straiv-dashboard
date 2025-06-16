@@ -11,6 +11,9 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { WidgetType } from '../../models/widget-type';
 import { ChartType } from '../../models/chart-type';
+import { Widget } from '../../models/widget';
+import { UtilityHelper } from '../../../shared/utils/utility-helper';
+import { WidgetService } from '../../services/widget.service';
 
 @Component({
   selector: 'app-create-widget',
@@ -21,8 +24,8 @@ import { ChartType } from '../../models/chart-type';
 })
 export class CreateWidgetComponent {
   widgetConfigService = inject(WidgetConfigService);
+  widgetService = inject(WidgetService);
   dialogRef = inject(MatDialogRef<CreateWidgetComponent>);
-  private fb = inject(FormBuilder);
   widgetForm: FormGroup | null = null;
   selectedFormat: WidgetFormat | null = null;
   selectedWidgetType: WidgetType | null = null;
@@ -49,6 +52,23 @@ export class CreateWidgetComponent {
 
   onSubmit() {
     const data = this.widgetForm?.value;
+    const newWidget: Widget = {
+      id: UtilityHelper.generateId(),
+      title: data.title,
+      widgetFormat: this.selectedFormat!,
+      widgetType: this.selectedWidgetType!,
+      chartType: data.chartType,
+      config: {
+        roomType: data.roomType,
+        lastDays: data.lastDays
+      },
+      x: 0,
+      y: 0,
+      w: 6,
+      h: 4
+    }
+    this.dialogRef.close(newWidget);
+    this.widgetService.newWidgetAdded.set(newWidget);
     console.log('Widget Data:', data);
   }
 }
