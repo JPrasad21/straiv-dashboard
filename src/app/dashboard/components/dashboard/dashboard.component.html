@@ -1,10 +1,26 @@
 @if (selectedDashboard()) {
   <div class="dashboard-container">
     <div class="dashboard-header">
-      <div class="dashboard-title">
-        <h1>{{ selectedDashboard()?.title }}</h1>
+      <div class="dashboard-title-wrapper">
+        @if (isEditMode()) {
+            <input
+              type="text"
+              matInput
+              class="dashboard-title-input"
+              [(ngModel)]="selectedTitle"
+              (keydown.enter)="isEditMode.set(false)"
+            >
+          <img src="assets/images/svg/check.svg" alt="Save" class="save-icon" (click)="isEditMode.set(false)">
+        } @else {
+          <h1 class="dashboard-title">{{ selectedDashboard()?.title }}</h1>
+          <img src="assets/images/svg/edit.svg" alt="Edit" class="edit-icon" (click)="isEditMode.set(true)">
+        }
+      </div>
+      <div class="dashboard-actions">
+        <button mat-button class="add-widget-btn" (click)="addWidget()">+Widget</button>
       </div>
     </div>
+    <div class="dashboard-layout"></div>
   </div>
 } @else {
   <div class="dashboard-placeholder">
