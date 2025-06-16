@@ -3,7 +3,7 @@ import { Dashboard } from '../../models/dashboard';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
-import { CreateDashboardComponent } from '../create-dashboard/create-dashboard.component';
+import { CreateDashboardComponent } from './create-dashboard/create-dashboard.component';
 import { StorageService } from '../../../core/services/storage.service';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
