@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { StorageService } from '../../../core/services/storage.service';
 import { Dashboard } from '../../models/dashboard';
 import { MatDialogRef } from '@angular/material/dialog';
-import { UtilityHelper } from '../../../shared/utils/utililty-helper';
+import { UtilityHelper } from '../../../shared/utils/utility-helper';
 @Component({
   selector: 'app-create-dashboard',
   standalone: true,
