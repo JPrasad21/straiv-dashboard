@@ -38,29 +38,13 @@ export class DashboardLayoutComponent {
 
   generateLayout() {
     this.layout = [...this.widgets()];
-    console.log('layout', this.layout);
   }
 
   addItemToLayout(widget: Widget) {
-    // const newLayoutItem = this.convertToGridLayoutItem(widget);
-
-    this.layout = [
-        widget,
-        ...this.layout
-    ];
+    this.layout = [widget, ...this.layout];
   }
 
   removeItem(id: string) {
     this.layout = this.layout.filter(x => x.id !== id);
   }
-
-  // convertToGridLayoutItem(widget: Widget): KtdGridLayoutItem {
-  //   return {
-  //     id: widget.id,
-  //     x: widget.x,
-  //     y: widget.y,
-  //     w: widget.w,
-  //     h: widget.h
-  //   };
-  // }
 }

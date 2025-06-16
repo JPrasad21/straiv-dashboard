@@ -65,11 +65,10 @@ export class CreateWidgetComponent {
       x: 0,
       y: 0,
       w: this.selectedFormat === 'Chart' ? 5 : 2,
-      h: this.selectedFormat === 'Chart' ? 4 : 2
+      h: this.selectedFormat === 'Chart' ? 5 : 2
     }
     this.dialogRef.close(newWidget);
     this.widgetService.newWidgetAdded.set(newWidget);
-    console.log('Widget Data:', data);
   }
 }
 

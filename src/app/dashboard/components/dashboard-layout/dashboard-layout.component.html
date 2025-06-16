@@ -1,18 +1,20 @@
 <div class="grid-container">
-  <ktd-grid
-    [cols]="layoutConfig.cols"
-    [rowHeight]="layoutConfig.rowHeight"
-    [gap]="layoutConfig.gap"
-    [layout]="layout"
-    [preventCollision]="layoutConfig.preventCollision"
-  >
-  @for (item of layout; track $index) {
-    <ktd-grid-item
-      [id]="item.id"
-      [transition]="layoutConfig.transition"
+  @if(layout && layout.length){
+    <ktd-grid
+      [cols]="layoutConfig.cols"
+      [rowHeight]="layoutConfig.rowHeight"
+      [gap]="layoutConfig.gap"
+      [layout]="layout"
+      [preventCollision]="layoutConfig.preventCollision"
     >
-      <app-widget-core [widget]="item" (remove)="removeItem(item.id)"></app-widget-core>
-    </ktd-grid-item>
-  }     
-  </ktd-grid>
+    @for (item of layout; track item.id) {
+      <ktd-grid-item
+        [id]="item.id"
+        [transition]="layoutConfig.transition"
+      >
+        <app-widget-core [widget]="item" (remove)="removeItem(item.id)"></app-widget-core>
+      </ktd-grid-item>
+    }     
+    </ktd-grid>
+  }
 </div>

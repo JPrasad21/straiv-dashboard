@@ -43,7 +43,7 @@ export class WidgetConfigService {
         };
       case 'Daily Checkins':
         return {
-          days: new FormControl<number | null>(null, Validators.required),
+          lastDays: new FormControl<number | null>(null, Validators.required),
           chartType: new FormControl<ChartType>('TimeSeries', Validators.required),
         };
       default:
@@ -61,7 +61,7 @@ export class WidgetConfigService {
         return {};
       case 'Overall Checkin Count':
         return {
-          days: new FormControl<number | null>(null, Validators.required),
+          lastDays: new FormControl<number | null>(null, Validators.required),
         };
       default:
         return {};

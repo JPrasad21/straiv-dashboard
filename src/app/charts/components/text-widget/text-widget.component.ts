@@ -1,4 +1,5 @@
 import { Component, input } from '@angular/core';
+import { WidgetData } from '../../../widgets/models/widget-data';
 
 @Component({
   selector: 'app-text-widget',
@@ -9,5 +10,5 @@ import { Component, input } from '@angular/core';
 })
 export class TextWidgetComponent {
 
-  data = input<string | null>(null);
+  data = input<WidgetData | null>(null);
 }

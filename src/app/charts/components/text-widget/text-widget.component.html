@@ -1,1 +1,3 @@
-<p>{{data() || 'Tuesday (30 Days)'}}</p>
+<div class="text-widget-wrapper">
+  <p>{{data()?.datasets?.[0]?.data}}</p>
+</div>

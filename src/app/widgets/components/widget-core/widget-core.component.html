@@ -12,12 +12,12 @@
     <ng-container [ngSwitch]="widget()?.widgetFormat">
       <ng-container *ngSwitchCase="'Chart'">
         <ng-container [ngSwitch]="widget()?.chartType">
-          <app-bar-chart *ngSwitchCase="'Bar'" [data]="widget()?.data"></app-bar-chart>
-          <app-time-series *ngSwitchCase="'Line'" [data]="widget()?.data"></app-time-series>
+          <app-bar-chart *ngSwitchCase="'Bar'" [data]="chartData"></app-bar-chart>
+          <app-time-series *ngSwitchCase="'TimeSeries'" [data]="chartData"></app-time-series>
         </ng-container>
       </ng-container>
       <ng-container *ngSwitchCase="'Text'">
-        <app-text-widget [data]="widget()?.data"></app-text-widget>
+        <app-text-widget [data]="chartData"></app-text-widget>
       </ng-container>
       
     </ng-container>

@@ -55,7 +55,7 @@
     @if(selectedWidgetType === 'Daily Checkins' || selectedWidgetType === 'Overall Checkin Count') {
       <mat-form-field>
         <mat-label>Days</mat-label>
-        <mat-select formControlName="days">
+        <mat-select formControlName="lastDays">
           @for (lastDay of lastDaysOptions; track lastDay) {
           <mat-option [value]="lastDay.value">{{ lastDay.label }}</mat-option>
           }
