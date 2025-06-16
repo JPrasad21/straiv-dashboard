@@ -69,7 +69,10 @@ export class WidgetCoreComponent {
       data = data.filter(ds => widget.config.roomType?.includes(ds.label));
     }
     if(widget.config.lastDays) {
-      data = data.slice(0, widget.config.lastDays);
+      const today = new Date();
+      const lastNDays = new Date(today);
+      lastNDays.setDate(today.getDate() - widget.config.lastDays);
+      data = data.filter(ds => new Date(ds.label) >= lastNDays);
     }
     return data;
   }
