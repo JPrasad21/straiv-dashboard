@@ -6,6 +6,7 @@
       [gap]="layoutConfig.gap"
       [layout]="layout"
       [preventCollision]="layoutConfig.preventCollision"
+      (layoutUpdated)="onLayoutUpdated($event)"
     >
     @for (item of layout; track item.id) {
       <ktd-grid-item

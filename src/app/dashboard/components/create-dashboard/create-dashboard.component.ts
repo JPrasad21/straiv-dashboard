@@ -4,10 +4,10 @@ import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { StorageService } from '../../../core/services/storage.service';
 import { Dashboard } from '../../models/dashboard';
 import { MatDialogRef } from '@angular/material/dialog';
 import { UtilityHelper } from '../../../shared/utils/utility-helper';
+import { DashboardService } from '../../services/dashboard.service';
 @Component({
   selector: 'app-create-dashboard',
   standalone: true,
@@ -16,7 +16,7 @@ import { UtilityHelper } from '../../../shared/utils/utility-helper';
   styleUrl: './create-dashboard.component.scss'
 })
 export class CreateDashboardComponent {
-  storageService = inject(StorageService);
+  dashboardService = inject(DashboardService);
   dialogRef = inject(MatDialogRef<CreateDashboardComponent>);
   dashboardForm!: FormGroup;
 
@@ -35,7 +35,7 @@ export class CreateDashboardComponent {
       description: data.description || '',
       widgets: []
     }
-    this.storageService.setItem('selectedDashboard', newDashboard);
+    this.dashboardService.setSelectedDashboard(newDashboard);
     this.dialogRef.close(true);
   }
 }

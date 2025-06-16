@@ -1,4 +1,4 @@
-@if (selectedDashboard()) {
+@if (selectedDashboard) {
   <div class="dashboard-container">
     <div class="dashboard-header">
       <div class="dashboard-title-wrapper">
@@ -12,17 +12,22 @@
             >
           <img src="assets/images/svg/check.svg" alt="Save" class="save-icon" (click)="isEditMode.set(false)">
         } @else {
-          <h1 class="dashboard-title">{{ selectedDashboard()?.title }}</h1>
+          <h1 class="dashboard-title">{{ selectedDashboard.title }}</h1>
           <img src="assets/images/svg/edit.svg" alt="Edit" class="edit-icon" (click)="isEditMode.set(true)">
         }
       </div>
       <div class="dashboard-actions">
         <button mat-button class="add-widget-btn" (click)="addWidget()">+Widget</button>
+        <img
+          src="assets/images/svg/delete.svg"
+          alt="Delete"
+          class="delete-icon"
+          (click)="deleteDashboard()">
       </div>
     </div>
     <div class="dashboard-layout">
       <app-dashboard-layout
-        [widgets]="selectedDashboard()?.widgets || []"
+        [widgets]="selectedDashboard.widgets || []"
       ></app-dashboard-layout>
     </div>
   </div>

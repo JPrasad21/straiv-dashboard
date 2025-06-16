@@ -1,9 +1,10 @@
 import { Component, effect, inject, input } from '@angular/core';
 import { Widget } from '../../../widgets/models/widget';
-import { KtdGridLayout, KtdGridModule } from '@katoid/angular-grid-layout';
+import { KtdDragEnd, KtdGridLayout, KtdGridModule } from '@katoid/angular-grid-layout';
 import { CommonModule } from '@angular/common';
 import { WidgetService } from '../../../widgets/services/widget.service';
 import { WidgetCoreComponent } from "../../../widgets/components/widget-core/widget-core.component";
+import { DashboardService } from '../../services/dashboard.service';
 
 @Component({
   selector: 'app-dashboard-layout',
@@ -13,6 +14,7 @@ import { WidgetCoreComponent } from "../../../widgets/components/widget-core/wid
   styleUrl: './dashboard-layout.component.scss'
 })
 export class DashboardLayoutComponent {
+  dashboardService = inject(DashboardService);
   widgetService = inject(WidgetService);
   widgets = input<Widget[]>([]);
   layout: any[] = [];
@@ -46,5 +48,23 @@ export class DashboardLayoutComponent {
 
   removeItem(id: string) {
     this.layout = this.layout.filter(x => x.id !== id);
+    this.dashboardService.removeWidgetFromDashboard(id);
+  }
+
+  onLayoutUpdated(layout: KtdGridLayout) {
+    const newWidgets = layout.map(item => {
+      const widget = this.layout.find(w => w.id === item.id);
+      if (widget) {
+        return {
+          ...widget,
+          x: item.x,
+          y: item.y,
+          w: item.w,
+          h: item.h
+        };
+      }
+      return null;
+    }).filter((w): w is Widget => w !== null);
+    this.dashboardService.updateWidgetsInDashboard(newWidgets);
   }
 }
