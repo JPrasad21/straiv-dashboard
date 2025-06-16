@@ -1,12 +1,12 @@
+import { WidgetFormat } from "./widget-format";
+
 export interface Widget {
   id: string;
   title: string;
-  WidgetType: 'Chart' | 'Text';
+  WidgetFormat: WidgetFormat;
   data: any;
   position: {
     x: number;
     y: number;
   };
 }
-
-export type WidgetType = 'Chart' | 'Text';

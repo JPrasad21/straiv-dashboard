@@ -1,0 +1,30 @@
+.create-widget-container {
+  width: 70vw;
+  height: 70vh;
+  margin: 0 auto;
+  padding: 16px;
+  .widget-format {
+    margin-bottom: 20px;
+  }
+  .widget-form {
+    margin-top: 20px;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  .save-btn {
+    background-color: #00dfca;
+    font-size: 14px;
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+  }
+}

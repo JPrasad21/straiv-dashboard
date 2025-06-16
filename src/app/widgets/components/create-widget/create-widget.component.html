@@ -1,0 +1,91 @@
+<div class="create-widget-container">
+  <h1>New Widget</h1>
+
+  <div class="widget-format">
+    <label id="widget-format-label">Widget format:</label>
+    <mat-radio-group
+      aria-labelledby="widget-format-label"
+      [(ngModel)]="selectedFormat"
+    >
+      <mat-radio-button value="Chart" (change)="selectWidgetFormat('Chart')"
+        >Chart</mat-radio-button
+      >
+      <mat-radio-button value="Text" (change)="selectWidgetFormat('Text')"
+        >Text</mat-radio-button
+      >
+    </mat-radio-group>
+  </div>
+
+  @if (selectedFormat) {
+  <mat-form-field>
+    <mat-label>Widget Type</mat-label>
+    <mat-select
+      [(ngModel)]="selectedWidgetType"
+      (ngModelChange)="selectWidgetType($event)"
+    >
+      @for (widgetType of widgetTypes; track widgetType) {
+      <mat-option [value]="widgetType">{{ widgetType }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  }
+  @if(widgetForm) {
+  <form class="widget-form" [formGroup]="widgetForm" (ngSubmit)="onSubmit()">
+    <!-- Title -->
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required />
+      @if(widgetForm.get('title')?.hasError('required')) {
+      <mat-error>Title is required</mat-error>
+      }
+    </mat-form-field>
+
+    <!-- Room Type -->
+    @if(selectedWidgetType === 'Occupancy by Room Types') {
+      <mat-form-field>
+        <mat-label>Room Type</mat-label>
+        <mat-select formControlName="roomType" multiple>
+          @for (roomType of roomTypes; track roomType) {
+          <mat-option [value]="roomType">{{ roomType }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
+    <!-- Last Days Range -->
+    @if(selectedWidgetType === 'Daily Checkins' || selectedWidgetType === 'Overall Checkin Count') {
+      <mat-form-field>
+        <mat-label>Days</mat-label>
+        <mat-select formControlName="days">
+          @for (lastDay of lastDaysOptions; track lastDay) {
+          <mat-option [value]="lastDay.value">{{ lastDay.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
+
+    <!-- Chart Type -->
+    @if(selectedFormat === 'Chart') {
+      <mat-form-field>
+        <mat-label>Chart Type</mat-label>
+        <mat-select formControlName="chartType">
+          @for (chartType of chartTypes; track chartType) {
+          <mat-option [value]="chartType">{{ chartType }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
+
+    <div class="button-container">
+      <button
+        class="save-btn"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="widgetForm.invalid"
+      >
+        Create
+      </button>
+    </div>
+  </form>
+  }
+</div>
