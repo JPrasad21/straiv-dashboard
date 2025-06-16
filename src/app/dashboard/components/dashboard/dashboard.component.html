@@ -20,7 +20,11 @@
         <button mat-button class="add-widget-btn" (click)="addWidget()">+Widget</button>
       </div>
     </div>
-    <div class="dashboard-layout"></div>
+    <div class="dashboard-layout">
+      <app-dashboard-layout
+        [widgets]="selectedDashboard()?.widgets || []"
+      ></app-dashboard-layout>
+    </div>
   </div>
 } @else {
   <div class="dashboard-placeholder">

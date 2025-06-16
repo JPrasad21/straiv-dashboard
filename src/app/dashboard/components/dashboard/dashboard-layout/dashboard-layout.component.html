@@ -1,0 +1,22 @@
+<div class="grid-container">
+  <ktd-grid
+    [cols]="layoutConfig.cols"
+    [rowHeight]="layoutConfig.rowHeight"
+    [layout]="layout"
+    [preventCollision]="layoutConfig.preventCollision"
+  >
+  @for (item of layout; track $index) {
+    <ktd-grid-item
+      [id]="item.id"
+      [transition]="layoutConfig.transition"
+    >
+        <div class="grid-item-content">{{item.id}}</div>
+        <div
+          class="grid-item-remove-handle"
+          (mousedown)="stopEventPropagation($event)"
+          (click)="removeItem(item.id)">
+        </div>
+    </ktd-grid-item>
+  }     
+  </ktd-grid>
+</div>

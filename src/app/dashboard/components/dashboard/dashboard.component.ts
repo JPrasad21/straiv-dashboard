@@ -7,11 +7,12 @@ import { CreateDashboardComponent } from './create-dashboard/create-dashboard.co
 import { StorageService } from '../../../core/services/storage.service';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
+import { DashboardLayoutComponent } from "./dashboard-layout/dashboard-layout.component";
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [FormsModule, MatButtonModule, MatDialogModule, MatIconModule, MatInputModule],
+  imports: [FormsModule, MatButtonModule, MatDialogModule, MatIconModule, MatInputModule, DashboardLayoutComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
