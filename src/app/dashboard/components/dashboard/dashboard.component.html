@@ -1,0 +1,16 @@
+@if (selectedDashboard()) {
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <div class="dashboard-title">
+        <h1>{{ selectedDashboard()?.title }}</h1>
+      </div>
+    </div>
+  </div>
+} @else {
+  <div class="dashboard-placeholder">
+    <div>
+      <p>Create a new dashboard</p>
+      <button mat-button class="create-dashboard-btn" (click)="createDashboard()">+ Dashboard</button>
+    </div>
+  </div>
+}

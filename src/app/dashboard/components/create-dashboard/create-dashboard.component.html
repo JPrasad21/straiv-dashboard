@@ -1,0 +1,28 @@
+<div class="create-dashboard-container">
+  <h1>New Dashboard</h1>
+  <form class="dashboard-form" [formGroup]="dashboardForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>Title</mat-label>
+      <input matInput formControlName="title" required>
+      @if(dashboardForm.get('title')?.hasError('required')) {
+        <mat-error>Title is required</mat-error>
+      }
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button
+        class="save-btn"
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="dashboardForm.invalid">
+        Create
+      </button>
+    </div>
+  </form>
+</div>

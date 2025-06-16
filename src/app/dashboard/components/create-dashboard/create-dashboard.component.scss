@@ -1,0 +1,23 @@
+// create stylings based on html
+.create-dashboard-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+  .dashboard-form {
+    margin-top: 20px;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.button-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+  .save-btn {
+    background-color: #00dfca;
+    font-size: 14px;
+  }
+}
