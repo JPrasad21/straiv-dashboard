@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CreateDashboardComponent } from './create-dashboard.component';
+import { MatDialogRef } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('CreateDashboardComponent', () => {
   let component: CreateDashboardComponent;
@@ -8,7 +10,13 @@ describe('CreateDashboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CreateDashboardComponent]
+      imports: [CreateDashboardComponent, BrowserAnimationsModule],
+      providers: [
+        {
+          provide: MatDialogRef,
+          useValue: {}
+        }
+      ]
     })
     .compileComponents();
     
