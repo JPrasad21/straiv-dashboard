@@ -1,0 +1,26 @@
+<div class="widget-container">
+  <div class="widget-header">
+    <p class="widget-title">{{widget()?.title}}</p>
+    <img
+      src="assets/images/svg/edit.svg"
+      alt="Edit"
+      class="edit-icon"
+      (mousedown)="stopEventPropagation($event)"
+      (click)="removeItem(widget()?.id)">
+  </div>
+  <div class="widget-content">
+    <ng-container [ngSwitch]="widget()?.widgetFormat">
+      <ng-container *ngSwitchCase="'Chart'">
+        <ng-container [ngSwitch]="widget()?.chartType">
+          <app-bar-chart *ngSwitchCase="'Bar'" [data]="widget()?.data"></app-bar-chart>
+          <app-time-series *ngSwitchCase="'Line'" [data]="widget()?.data"></app-time-series>
+        </ng-container>
+      </ng-container>
+      <ng-container *ngSwitchCase="'Text'">
+        <app-text-widget [data]="widget()?.data"></app-text-widget>
+      </ng-container>
+      
+    </ng-container>
+
+  </div>
+</div>

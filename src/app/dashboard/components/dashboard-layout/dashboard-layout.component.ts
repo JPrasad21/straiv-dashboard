@@ -3,21 +3,23 @@ import { Widget } from '../../../widgets/models/widget';
 import { KtdGridLayout, KtdGridModule } from '@katoid/angular-grid-layout';
 import { CommonModule } from '@angular/common';
 import { WidgetService } from '../../../widgets/services/widget.service';
+import { WidgetCoreComponent } from "../../../widgets/components/widget-core/widget-core.component";
 
 @Component({
   selector: 'app-dashboard-layout',
   standalone: true,
-  imports: [KtdGridModule, CommonModule],
+  imports: [KtdGridModule, CommonModule, WidgetCoreComponent],
   templateUrl: './dashboard-layout.component.html',
   styleUrl: './dashboard-layout.component.scss'
 })
 export class DashboardLayoutComponent {
   widgetService = inject(WidgetService);
   widgets = input<Widget[]>([]);
-  layout: KtdGridLayout = [];
+  layout: any[] = [];
   layoutConfig = {
     cols: 10,
-    rowHeight: 100,
+    rowHeight: 80,
+    gap: 20,
     preventCollision: false,
     transition: 'transform 500ms ease, width 500ms ease, height 500ms ease'
   }
@@ -46,10 +48,6 @@ export class DashboardLayoutComponent {
         widget,
         ...this.layout
     ];
-  }
-  stopEventPropagation(event: Event) {
-    event.preventDefault();
-    event.stopPropagation();
   }
 
   removeItem(id: string) {
